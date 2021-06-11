@@ -2,11 +2,12 @@ package com.mandalarsoft.math;
 
 import java.util.stream.LongStream;
 
-public class PascalTrangle {
+@Deprecated
+public class PascalTrangleLegacy {
 
-	private final Factorial factorial;
+	protected final Factorial factorial;
 
-	public PascalTrangle() {
+	public PascalTrangleLegacy() {
 		this.factorial = new Factorial();
 	}
 
@@ -21,12 +22,14 @@ public class PascalTrangle {
 	}
 
 	public long negativeRoleof(int n, int r) {
+		if (r == 0)
+			return 1;
 		final long numerator = LongStream.range(1, r).reduce(n, (a, b) -> a * (n - b));
 		return numerator / factorial.of(r);
 	}
 
 	public long[] negativeRoleof(int n) {
-		return LongStream.range(1, 10).map(x -> negativeRoleof(n, (int) x)).toArray();
+		return LongStream.range(0, 10).map(x -> negativeRoleof(n, (int) x)).toArray();
 	}
 
 }
