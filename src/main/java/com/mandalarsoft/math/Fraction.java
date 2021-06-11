@@ -13,6 +13,10 @@ class Builder {
 		return new Fraction(x * a, a);
 	}
 
+	public Fraction by(long a) {
+		return new Fraction(x, a);
+	}
+
 }
 
 public class Fraction {
@@ -27,10 +31,6 @@ public class Fraction {
 		this.denominator = denominator;
 	}
 
-	public static Builder of(long x) {
-		return new Builder(x);
-	}
-
 	public long getNumerator() {
 		return numerator;
 	}
@@ -42,6 +42,50 @@ public class Fraction {
 	@Override
 	public String toString() {
 		return " ( " + numerator + "/" + denominator + " ) ";
+	}
+
+	public static Builder of(long x) {
+		return new Builder(x);
+	}
+
+	public Fraction subtract(long b) {
+		return subtract(this, b);
+	}
+
+	public Fraction subtract(Fraction b) {
+		return subtract(this, b);
+	}
+
+	public Fraction addition(long b) {
+		return addition(this, b);
+	}
+
+	public Fraction addition(Fraction b) {
+		return addition(this, b);
+	}
+
+	public Fraction multiply(long b) {
+		return multiply(this, b);
+	}
+
+	public Fraction multiply(Fraction b) {
+		return multiply(this, b);
+	}
+
+	public Fraction divide(long b) {
+		return divide(this, b);
+	}
+
+	public Fraction divide(Fraction b) {
+		return divide(this, b);
+	}
+
+	public Fraction aligment(long b) {
+		return aligment(this, b);
+	}
+
+	public Fraction simplify() {
+		return simplify(this);
 	}
 
 	public static Fraction subtract(Fraction a, long b) {
@@ -74,6 +118,10 @@ public class Fraction {
 		return new Fraction(a.numerator * b.numerator, a.denominator * b.denominator);
 	}
 
+	public static Fraction multiply(Fraction a, long b) {
+		return new Fraction(a.numerator * b, a.denominator);
+	}
+
 	public static Fraction divide(Fraction a, long b) {
 		return multiply(a, new Fraction(1, b));
 	}
@@ -84,6 +132,13 @@ public class Fraction {
 
 	public static Fraction aligment(Fraction a, long base) {
 		return new Fraction(a.numerator * base, a.denominator * base);
+	}
+
+	public static Fraction simplify(Fraction f) {
+		long gcd = GCD.of(f);
+		if (gcd != 1)
+			return new Fraction(f.numerator / gcd, f.denominator / gcd);
+		return f;
 	}
 
 }

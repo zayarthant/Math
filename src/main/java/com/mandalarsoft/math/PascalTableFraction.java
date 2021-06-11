@@ -17,7 +17,7 @@ public class PascalTableFraction extends PascalTrangleAbstract<Fraction> {
 			final Fraction t = Fraction.subtract(n, i);
 			result = Fraction.multiply(result, t);
 		}
-		return Fraction.divide(result, factorial.of(r));
+		return Fraction.divide(result, factorial.of(r)).simplify();
 	}
 
 	@Override
